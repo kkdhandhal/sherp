@@ -1,16 +1,63 @@
-# This is a sample Python script.
+import json
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+from kivymd.app import MDApp
+from kivymd.uix.label import MDLabel
+from kivymd.uix.screen import MDScreen
+from kivymd.uix.toolbar import MDToolbar
+from kivymd.uix.navigationdrawer import MDNavigationDrawer,MDNavigationLayout,ScreenManager
+from kivymd.uix.boxlayout import MDBoxLayout
+from kivy.core.window import Window
+import requests
+from component.menu import NavMenu
 
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+class MainGUI(MDBoxLayout):
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.orientation = "vertical"
+
+        self.adaptive_width = False
+        #####   ToolBar Code Start
+        self.ToolBar = MDToolbar()
+        self.ToolBar.title =" IT Application"
+        self.ToolBar.elevation =15
+        self.ToolBar.height = 40
+        self.ToolBar.left_action_items =[["menu", lambda x: self.nav.set_state("open")]]
+        self.ToolBar.md_bg_color = [0.1,0.5,0.6,0.8]
+
+        ###### ToolBar code end
+
+        #### Screen1  Code Start
+        self.Screen1 = MDScreen()
+        self.Screen1.add_widget(MDLabel(text="screeeen11", halign="center"))
+        #### Screen1  Code End
 
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
+        #### ScreenManager Layout Code Start
+        self.ScrnMgr = ScreenManager()
+        self.ScrnMgr.add_widget(self.Screen1)
+        #### ScreenManager Layout Code End
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+        #### Navigation Code Start
+        self.nav = MDNavigationDrawer()
+        self.nav.add_widget(NavMenu())
+        #### Navigation Code end
+
+        #### Navigation Layout Code Start
+        self.NavLayout = MDNavigationLayout()
+        self.NavLayout.add_widget(self.ScrnMgr)
+        self.NavLayout.add_widget(self.nav)
+        #### Navigation Layout Code End
+
+        self.add_widget(self.ToolBar)
+        self.add_widget(self.NavLayout)
+
+class MainApp(MDApp):
+    def build(self):
+        return MainGUI()
+
+
+if __name__ == "__main__":
+    Window.maximize()
+    MainApp().run()
