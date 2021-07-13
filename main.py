@@ -22,7 +22,7 @@ class MainGUI(MDBoxLayout):
         self.ToolBar = MDToolbar()
         self.ToolBar.title =" IT Application"
         self.ToolBar.elevation =15
-        self.ToolBar.height = 40
+        self.ToolBar.height = "40dp"
         self.ToolBar.left_action_items =[["menu", lambda x: self.nav.set_state("open")]]
         self.ToolBar.md_bg_color = [0.1,0.5,0.6,0.8]
 
@@ -41,6 +41,7 @@ class MainGUI(MDBoxLayout):
 
         #### Navigation Code Start
         self.nav = MDNavigationDrawer()
+        self.nav.md_bg_color = [1 , 1, 1, 0.6]
         self.nav.add_widget(NavMenu())
         #### Navigation Code end
 
