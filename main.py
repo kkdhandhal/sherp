@@ -23,8 +23,8 @@ class MainGUI(MDBoxLayout):
         self.ToolBar.title =" IT Application"
         self.ToolBar.elevation =15
         self.ToolBar.height = "40dp"
-        self.ToolBar.left_action_items =[["menu", lambda x: self.nav.set_state("open")]]
-        self.ToolBar.md_bg_color = [0.1,0.5,0.6,0.8]
+        self.ToolBar.left_action_items = [["menu", lambda x: self.nav.set_state("open")]]
+        self.ToolBar.md_bg_color = [0.1, 0.5, 0.6, 0.8]
 
         ###### ToolBar code end
 
